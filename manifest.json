@@ -1,0 +1,12 @@
+{
+  "name": "Sunfl0wers",
+  "version": "1.0",
+  "description": "Build an Extension!",
+  "manifest_version": 2,
+  "permissions": ["tabs", "activeTab", "*://*/*", "webNavigation"],
+  "background": {
+    "scripts": [
+      "background.js"
+    ]
+  }
+}
