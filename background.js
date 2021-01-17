@@ -9,10 +9,10 @@ chrome.webNavigation.onDOMContentLoaded.addListener(() => {
 
         var chance = () => {
           const elapsedMs = new Date() - startedAt;
-          return (elapsedMs / msUntilChaos) * maxHackChance;
+          return minChance + (elapsedMs / msUntilChaos) * maxHackChance;
         }
 
-        document.addEventListener("mousemove", (ev) => {
+        setInterval(function() {
           Array.prototype.slice.call(document.querySelectorAll("*")).forEach((el) => {
             el.style.transition = "all 1s ease-out";
             if (Math.random() < chance()) {
@@ -44,7 +44,7 @@ chrome.webNavigation.onDOMContentLoaded.addListener(() => {
               )}/\${Math.random(300 * Math.random())}\`;
             }
           });
-        });
+        }, 1000 / 60);
       `;
       chrome.tabs.executeScript(tab.tabId, { code });
     } catch (e) {}
